@@ -173,27 +173,6 @@ The touch controller and SHTC3 share GPIO0/GPIO1 I2C. This port serializes their
 
 The sensor is mounted inside the device enclosure and can be warmed by the ESP32, display backlight, charging circuit and the user's hand. Treat it as an onboard/environment indication rather than a calibrated ambient-weather instrument. For a more representative reading, allow the board to stabilize and avoid holding or charging it during measurement.
 
-## Building from source
-
-The included source is a complete snapshot of the modified Bruce tree. Install PlatformIO Core, enter the source directory and run:
-
-```bash
-pio run -e waveshare-c5-touch-28
-```
-
-The merged output is created as:
-
-```text
-Bruce-waveshare-c5-touch-28.bin
-```
-
-Main port files:
-
-```text
-boards/waveshare-c5-touch-2.8/
-src/core/menu_items/OthersMenu.cpp
-src/main.cpp
-```
 
 ## Restoring or troubleshooting
 
