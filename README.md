@@ -1,12 +1,13 @@
 <div align="center">
-
-
-# Bruce for Waveshare ESP32-C5-Touch-LCD-2.8
-<img
-    src="https://github.com/user-attachments/assets/d783cb62-5f91-448b-a41c-fe661c59c53f"
-    alt="Bruce ESP32-C5 — TechChip Edition"
-    width="320"
-  />
+  <h1>
+    <img
+      src="https://github.com/user-attachments/assets/d783cb62-5f91-448b-a41c-fe661c59c53f"
+      alt="Bruce ESP32-C5 — TechChip Edition"
+      width="80"
+      align="center"
+    />
+    &nbsp; Bruce for Waveshare ESP32-C5-Touch-LCD-2.8
+  </h1>
 </div>
 Community port of [Bruce Firmware](https://github.com/BruceDevices/firmware) for the Waveshare **ESP32-C5-Touch-LCD-2.8** board, prepared for the TechChip community.
 
