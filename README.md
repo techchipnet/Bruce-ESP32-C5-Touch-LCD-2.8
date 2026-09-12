@@ -18,9 +18,7 @@ All primary firmware functionality and the Bruce user interface come from the ex
 
 Flash this merged image at address `0x0`:
 
-```text
-Bruce-waveshare-c5-touch-28.bin
-```
+[Releases](https://github.com/techchipnet/Bruce-ESP32-C5-Touch-LCD-2.8/releases) 
 
 SHA-256:
 
