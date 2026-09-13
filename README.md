@@ -21,7 +21,6 @@ All primary firmware functionality and the Bruce user interface come from the ex
 - Touch support
 - TF/microSD support on the board's shared SPI bus
 - Onboard SHTC3 temperature and humidity screen under `Others > Environment`
-- Optional external nRF24L01(+) support using `CE=GPIO2`, `CSN=GPIO3` and shared SPI pins `GPIO6/7/8`
 
 ## Release file
 
@@ -113,54 +112,6 @@ python3 -m esptool --chip esp32c5 --port /dev/cu.usbmodem101 --baud 115200 write
 
 For reliability this release uses 115200 baud. A higher baud rate may work, but is more sensitive to the USB cable and hub.
 
-## nRF24L01(+) connection
-
-### Recommended connection used by this firmware
-
-| nRF24L01 pin | ESP32-C5 signal | Physical connection |
-|---|---:|---|
-| `VCC` | `3V3` | SH1.0 12-pin connector |
-| `GND` | `GND` | SH1.0 12-pin connector |
-| `CE` | `GPIO2` | SH1.0 12-pin connector |
-| `CSN` / `CS` | `GPIO3` | SH1.0 12-pin connector |
-| `SCK` | `GPIO6` | Shared LCD/TF SPI pad or trace |
-| `MOSI` | `GPIO7` | Shared LCD/TF SPI pad or trace |
-| `MISO` | `GPIO8` | TF-card SPI pad or trace |
-| `IRQ` | Not used | Leave disconnected |
-
-The 12-pin connector does **not** expose GPIO6, GPIO7 and GPIO8. Therefore the recommended wiring is only partly made through the SH1.0 cable; the three SPI wires must connect to the corresponding board pads/traces. LCD, TF card and nRF24 share the SPI clock/data lines, while each device has a separate chip-select signal.
-
-### SH1.0 12-pin board labels
-
-With the board oriented exactly like the Waveshare interface illustration, the connector labels are:
-
-| Position | Label |
-|---:|---|
-| 1 | `RST` |
-| 2 | `BOOT / GPIO28` |
-| 3 | `EXIO7` |
-| 4 | `EXIO6` |
-| 5 | `GPIO3` |
-| 6 | `GPIO2` |
-| 7 | `3V3` |
-| 8 | `GND` |
-| 9 | `D+ / GPIO14` |
-| 10 | `D- / GPIO13` |
-| 11 | `VBUS / 5V` |
-| 12 | `GND` |
-
-Cable wire order can appear mirrored at the loose end. Verify the board silkscreen or check continuity before applying power.
-
-### nRF24 power precautions
-
-- Power the radio from **3.3V only**. Never connect its VCC pin to VBUS/5V.
-- Place a `10 uF` to `47 uF` capacitor between VCC and GND close to the radio module. A `100 nF` ceramic capacitor in parallel is also useful.
-- High-power PA/LNA nRF24 modules may require a separate clean 3.3V regulator; do not assume the connector can supply their peak current reliably.
-- Keep SPI wires short, especially SCK.
-- Disconnect power before changing wiring.
-
-Using GPIO13/GPIO14 as an all-SH1.0 software SPI alternative is not enabled in this release because those pins are the board's USB D-/D+ connection and can interfere with flashing and USB serial.
-
 ## Temperature and humidity
 
 Open:
@@ -180,6 +131,11 @@ The touch controller and SHTC3 share GPIO0/GPIO1 I2C. This port serializes their
 
 The sensor is mounted inside the device enclosure and can be warmed by the ESP32, display backlight, charging circuit and the user's hand. Treat it as an onboard/environment indication rather than a calibrated ambient-weather instrument. For a more representative reading, allow the board to stabilize and avoid holding or charging it during measurement.
 
+## Upcoming features
+
+- **NRF24 support — Coming soon**
+- **CC1101 support — Coming soon**
+- **Audio support — Coming soon**
 
 ## Restoring or troubleshooting
 
@@ -187,7 +143,6 @@ The sensor is mounted inside the device enclosure and can be warmed by the ESP32
 - If the board is not detected, try another data-capable USB cable and connect directly without a hub.
 - For download mode: hold **BOOT**, tap **RESET**, then release **BOOT**.
 - If flashing disconnects at a high baud rate, retry at `115200`.
-- If nRF24 is not detected, first confirm 3.3V, common ground, CE/CSN assignment and SPI continuity; then add the local decoupling capacitor.
 
 ## Responsible use
 
